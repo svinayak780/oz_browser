@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_browser/models/browser_model.dart';
-import 'package:flutter_browser/models/webview_model.dart';
-import 'package:flutter_browser/pages/settings/android_settings.dart';
-import 'package:flutter_browser/pages/settings/cross_platform_settings.dart';
-import 'package:flutter_browser/pages/settings/ios_settings.dart';
+import 'package:oz_browser/models/browser_model.dart';
+import 'package:oz_browser/models/webview_model.dart';
+import 'package:oz_browser/pages/settings/android_settings.dart';
+import 'package:oz_browser/pages/settings/cross_platform_settings.dart';
+import 'package:oz_browser/pages/settings/ios_settings.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';

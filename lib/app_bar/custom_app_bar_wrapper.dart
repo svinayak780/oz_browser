@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_browser/app_bar/desktop_app_bar.dart';
-import 'package:flutter_browser/util.dart';
+import 'package:oz_browser/app_bar/desktop_app_bar.dart';
+import 'package:oz_browser/util.dart';
 
 class CustomAppBarWrapper extends StatefulWidget implements PreferredSizeWidget {
   final AppBar appBar;

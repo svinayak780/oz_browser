@@ -4,10 +4,10 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_browser/main.dart';
+import 'package:oz_browser/main.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_browser/models/webview_model.dart';
-import 'package:flutter_browser/webview_tab.dart';
+import 'package:oz_browser/models/webview_model.dart';
+import 'package:oz_browser/webview_tab.dart';
 import 'package:uuid/uuid.dart';
 import 'package:collection/collection.dart';
 
@@ -187,8 +187,10 @@ class WindowModel extends ChangeNotifier {
 
   Future<void> removeInfo() async {
     final count = await db?.rawDelete('DELETE FROM windows WHERE id = ?', [id]);
-    if ((count == null || count == 0) && kDebugMode) {
-      print("Cannot delete window $id");
+    if (count == null || count == 0) {
+      if (kDebugMode) {
+        print("Cannot delete window $id");
+      }
     }
   }
 
@@ -207,8 +209,10 @@ class WindowModel extends ChangeNotifier {
       count = await db?.rawUpdate('UPDATE windows SET json = ? WHERE id = ?',
           [json.encode(toJson()), id]);
     }
-    if ((count == null || count == 0) && kDebugMode) {
-      print("Cannot insert/update window $id");
+    if (count == null || count == 0) {
+      if (kDebugMode) {
+        print("Cannot insert/update window $id");
+      }
     }
   }
 

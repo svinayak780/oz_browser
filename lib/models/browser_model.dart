@@ -3,7 +3,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_browser/util.dart';
+import 'package:oz_browser/util.dart';
 import 'package:window_manager_plus/window_manager_plus.dart';
 import '../main.dart';
 import 'web_archive_model.dart';
@@ -112,8 +112,10 @@ class BrowserModel extends ChangeNotifier {
 
   Future<void> removeAllWindows() async {
     final count = await db?.rawDelete('DELETE FROM windows');
-    if (count == null && kDebugMode) {
-      print("Cannot delete windows");
+    if (count == null) {
+      if (kDebugMode) {
+        print("Cannot delete windows");
+      }
     }
   }
 
@@ -240,7 +242,7 @@ class BrowserModel extends ChangeNotifier {
     final browser =
         await db?.rawQuery('SELECT * FROM browser WHERE id = ?', [1]);
     int? count;
-    if (browser == null || browser.length == 0) {
+    if (browser == null || browser.isEmpty) {
       count = await db?.rawInsert('INSERT INTO browser(id, json) VALUES(?, ?)',
           [1, json.encode(toJson())]);
     } else {
@@ -248,15 +250,17 @@ class BrowserModel extends ChangeNotifier {
           [json.encode(toJson()), 1]);
     }
 
-    if ((count == null || count == 0) && kDebugMode) {
-      print("Cannot insert/update browser 1");
+    if (count == null || count == 0) {
+      if (kDebugMode) {
+        print("Cannot insert/update browser 1");
+      }
     }
   }
 
   Future<void> restore() async {
     final browsers =
         await db?.rawQuery('SELECT * FROM browser WHERE id = ?', [1]);
-    if (browsers == null || browsers.length == 0) {
+    if (browsers == null || browsers.isEmpty) {
       return;
     }
     final browser = browsers[0];

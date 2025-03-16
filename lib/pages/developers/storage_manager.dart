@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_browser/main.dart';
-import 'package:flutter_browser/models/webview_model.dart';
-import 'package:flutter_browser/util.dart';
+import 'package:oz_browser/main.dart';
+import 'package:oz_browser/models/webview_model.dart';
+import 'package:oz_browser/util.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';
 

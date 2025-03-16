@@ -3,12 +3,12 @@ import 'dart:async';
 // import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_browser/custom_image.dart';
-import 'package:flutter_browser/tab_viewer.dart';
-import 'package:flutter_browser/app_bar/browser_app_bar.dart';
-import 'package:flutter_browser/models/webview_model.dart';
-import 'package:flutter_browser/util.dart';
-import 'package:flutter_browser/webview_tab.dart';
+import 'package:oz_browser/custom_image.dart';
+import 'package:oz_browser/tab_viewer.dart';
+import 'package:oz_browser/app_bar/browser_app_bar.dart';
+import 'package:oz_browser/models/webview_model.dart';
+import 'package:oz_browser/util.dart';
+import 'package:oz_browser/webview_tab.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:provider/provider.dart';
 

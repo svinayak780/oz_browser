@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_browser/javascript_console_result.dart';
-import 'package:flutter_browser/models/browser_model.dart';
-import 'package:flutter_browser/models/webview_model.dart';
+import 'package:oz_browser/javascript_console_result.dart';
+import 'package:oz_browser/models/webview_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/window_model.dart';

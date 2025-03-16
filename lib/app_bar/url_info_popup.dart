@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_browser/app_bar/certificates_info_popup.dart';
-import 'package:flutter_browser/models/webview_model.dart';
+import 'package:oz_browser/app_bar/certificates_info_popup.dart';
+import 'package:oz_browser/models/webview_model.dart';
 import 'package:provider/provider.dart';
 
 import '../custom_popup_dialog.dart';
@@ -114,7 +114,7 @@ class _UrlInfoPopupState extends State<UrlInfoPopup> {
                     await Future.delayed(Duration(
                         milliseconds:
                             widget.transitionDuration.inMilliseconds - 200));
-
+                    if (!context.mounted) return;
                     showDialog(
                       context: context,
                       builder: (context) {

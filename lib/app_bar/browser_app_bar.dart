@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_browser/app_bar/desktop_app_bar.dart';
-import 'package:flutter_browser/app_bar/find_on_page_app_bar.dart';
-import 'package:flutter_browser/app_bar/webview_tab_app_bar.dart';
-import 'package:flutter_browser/util.dart';
+import 'package:oz_browser/app_bar/desktop_app_bar.dart';
+import 'package:oz_browser/app_bar/find_on_page_app_bar.dart';
+import 'package:oz_browser/app_bar/webview_tab_app_bar.dart';
+import 'package:oz_browser/util.dart';
 
 class BrowserAppBar extends StatefulWidget implements PreferredSizeWidget {
   BrowserAppBar({super.key})

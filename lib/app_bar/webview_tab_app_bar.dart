@@ -4,17 +4,17 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_browser/app_bar/url_info_popup.dart';
-import 'package:flutter_browser/custom_image.dart';
-import 'package:flutter_browser/main.dart';
-import 'package:flutter_browser/models/browser_model.dart';
-import 'package:flutter_browser/models/favorite_model.dart';
-import 'package:flutter_browser/models/web_archive_model.dart';
-import 'package:flutter_browser/models/webview_model.dart';
-import 'package:flutter_browser/pages/developers/main.dart';
-import 'package:flutter_browser/pages/settings/main.dart';
-import 'package:flutter_browser/tab_popup_menu_actions.dart';
-import 'package:flutter_browser/util.dart';
+import 'package:oz_browser/app_bar/url_info_popup.dart';
+import 'package:oz_browser/custom_image.dart';
+import 'package:oz_browser/main.dart';
+import 'package:oz_browser/models/browser_model.dart';
+import 'package:oz_browser/models/favorite_model.dart';
+import 'package:oz_browser/models/web_archive_model.dart';
+import 'package:oz_browser/models/webview_model.dart';
+import 'package:oz_browser/pages/developers/main.dart';
+import 'package:oz_browser/pages/settings/main.dart';
+import 'package:oz_browser/tab_popup_menu_actions.dart';
+import 'package:oz_browser/util.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:path_provider/path_provider.dart';
@@ -90,7 +90,8 @@ class _WebViewTabAppBarState extends State<WebViewTabAppBar>
   @override
   Widget build(BuildContext context) {
     return Selector<WebViewModel, ({WebUri? item1, int? item2})>(
-        selector: (context, webViewModel) => (item1: webViewModel.url, item2: webViewModel.tabIndex),
+        selector: (context, webViewModel) =>
+            (item1: webViewModel.url, item2: webViewModel.tabIndex),
         builder: (context, record, child) {
           if (_prevTabIndex != record.item2) {
             _searchController?.text = record.item1?.toString() ?? '';
@@ -100,7 +101,8 @@ class _WebViewTabAppBarState extends State<WebViewTabAppBar>
             if (record.item1 == null) {
               _searchController?.text = "";
             }
-            if (record.item1 != null && _focusNode != null &&
+            if (record.item1 != null &&
+                _focusNode != null &&
                 !_focusNode!.hasFocus) {
               _searchController?.text = record.item1.toString();
             }
@@ -113,23 +115,23 @@ class _WebViewTabAppBarState extends State<WebViewTabAppBar>
               builder: (context, isIncognitoMode, child) {
                 return leading != null
                     ? AppBar(
-                  backgroundColor: isIncognitoMode
-                      ? Colors.black38
-                      : Theme.of(context).colorScheme.primaryContainer,
-                  leading: leading,
-                  leadingWidth: 130,
-                  titleSpacing: 0.0,
-                  title: _buildSearchTextField(),
-                  actions: _buildActionsMenu(),
-                )
+                        backgroundColor: isIncognitoMode
+                            ? Colors.black38
+                            : Theme.of(context).colorScheme.primaryContainer,
+                        leading: leading,
+                        leadingWidth: 130,
+                        titleSpacing: 0.0,
+                        title: _buildSearchTextField(),
+                        actions: _buildActionsMenu(),
+                      )
                     : AppBar(
-                  backgroundColor: isIncognitoMode
-                      ? Colors.black38
-                      : Theme.of(context).colorScheme.primaryContainer,
-                  titleSpacing: 10.0,
-                  title: _buildSearchTextField(),
-                  actions: _buildActionsMenu(),
-                );
+                        backgroundColor: isIncognitoMode
+                            ? Colors.black38
+                            : Theme.of(context).colorScheme.primaryContainer,
+                        titleSpacing: 10.0,
+                        title: _buildSearchTextField(),
+                        actions: _buildActionsMenu(),
+                      );
               });
         });
   }
@@ -264,7 +266,9 @@ class _WebViewTabAppBarState extends State<WebViewTabAppBar>
             onTap: () {
               if (!shouldSelectText ||
                   _searchController == null ||
-                  _searchController!.text.isEmpty) return;
+                  _searchController!.text.isEmpty) {
+                return;
+              }
               shouldSelectText = false;
               _searchController!.selection = TextSelection(
                   baseOffset: 0, extentOffset: _searchController!.text.length);
@@ -858,7 +862,7 @@ class _WebViewTabAppBarState extends State<WebViewTabAppBar>
           return items;
         },
       )
-    ].whereNotNull().toList();
+    ].nonNulls.toList();
   }
 
   void _popupMenuChoiceAction(String choice) async {
@@ -1313,23 +1317,24 @@ class _WebViewTabAppBarState extends State<WebViewTabAppBar>
       File file = File(
           "${dir.path}/screenshot_${DateTime.now().microsecondsSinceEpoch}.png");
       await file.writeAsBytes(screenshot);
-
-      await showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: Image.memory(screenshot),
-            actions: <Widget>[
-              ElevatedButton(
-                child: const Text("Share"),
-                onPressed: () async {
-                  await Share.shareXFiles([XFile(file.path)]);
-                },
-              )
-            ],
-          );
-        },
-      );
+      if (mounted) {
+        await showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Image.memory(screenshot),
+              actions: <Widget>[
+                ElevatedButton(
+                  child: const Text("Share"),
+                  onPressed: () async {
+                    await Share.shareXFiles([XFile(file.path)]);
+                  },
+                )
+              ],
+            );
+          },
+        );
+      }
 
       file.delete();
     }

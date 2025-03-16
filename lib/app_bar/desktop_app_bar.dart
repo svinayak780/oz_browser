@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -192,7 +191,7 @@ class _DesktopAppBarState extends State<DesktopAppBar> {
                         size: 15,
                         color: Colors.white,
                       )),
-            ].whereNotNull().toList().cast<Widget>(),
+            ].nonNulls.toList().cast<Widget>(),
           ),
         ),
       ),
@@ -248,7 +247,7 @@ class _DesktopAppBarState extends State<DesktopAppBar> {
           : OpenTabsViewer(
               webViewTabs: windowModel.webViewTabs,
             ),
-    ].whereNotNull().toList();
+    ].nonNulls.toList();
 
     return Container(
       color: Theme.of(context).colorScheme.primary,
@@ -593,11 +592,11 @@ class _OpenTabsViewerState extends State<OpenTabsViewer> {
                             )
                           ],
                         )
-                      ].whereNotNull().toList(),
+                      ].nonNulls.toList(),
                     )),
               );
             }).toList())
-          ].whereNotNull().toList(),
+          ].nonNulls.toList(),
         ));
   }
 }

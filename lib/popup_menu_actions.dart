@@ -1,4 +1,4 @@
-import 'package:flutter_browser/util.dart';
+import 'package:oz_browser/util.dart';
 
 class PopupMenuActions {
   // ignore: constant_identifier_names
